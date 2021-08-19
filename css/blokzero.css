@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face{
+	font-family:OPTIAgency-Gothic;
+	src: url("../fonts/OPTIAgency-Gothic.otf")
+
+}
+
+@font-face {
+	font-family: Roboto-Regular;
+	src: url("../fonts/Roboto-Regular.ttf");
+
+}
+@font-face {
+	font-family: Roboto-Light;
+	src: url("../fonts/Roboto-Light.ttf");
+}
+
+.header-logoEow {
+	font-family: OPTIAgency-Gothic !important;
+	font-size: 30pt;
+	color: aliceblue;
+}
+
+/* changes font throughout app */
+.blokzero-font{
+	font-family: Roboto-Light !important;
+}
+
+/* form specific font */
+.form-font{
+	font-family: Roboto-Regular !important;
+}
+
+
+/* defines the slider image width */
+.slider .slides li img {
+    background-size:100% auto;
+    background-repeat: no-repeat;
+	/* padding-left: 30%;
+	padding-right: 30%;
+	padding-top: 30%; */
+	
+}
+
+/* sets the height of the coloum */
+.col-height{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* removes padding on columns */
+
+.col {
+	padding: 0;
+}
+
+ /* .col.s8.m8.l5 {
+	padding: 0;
+} 
+
+.col.s8.m8.l4 {
+	padding: 0;
+} */
+
+/*=================================================== COLOUR ======================================== */
+
+/* changes colour of button waves effect */
+.waves-custom {
+
+	/* The alpha value allows the text and background color
+of the button to still show through. */
+	background-color: rgba(120, 144, 156, 0);
+}
+
+/* changes the dropdown menu colour */
+.dropdown-content li > a, .dropdown-content li > span {
+	color: #78909c !important;
+}
+
+/* .brand{
+	background: #78909c !important;	
+} */
