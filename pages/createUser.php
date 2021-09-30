@@ -61,7 +61,7 @@ include('php/userCreation.php');
 										        <input placeholder="Enter your name" type="text" name="createRealname">
                                                 <label for="password">Your name</label>
 									        </div>
-                                            <!-- <label>Job Title</label>
+                                            <label>Job Title</label>
                                             <select class="browser-default">
                                                 <option value="" disabled selected>Choose your option</option>
                                                 <option name="assistantManager" value="1">Assistant Manager</option>
@@ -70,7 +70,7 @@ include('php/userCreation.php');
                                                 <option name="areaManager" value="4">General Manager</option>
                                                 <option name="directorOpsManager" value="5">Director / Ops Manager</option>
                                             </select><br>
-                                            <label>Venue</label>
+                                            <!--<label>Venue</label>
                                             <select class="browser-default">
                                                 <option value="" disabled selected>Choose your option</option>
                                                 <option name="story" value="1">Story</option>

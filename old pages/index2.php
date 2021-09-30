@@ -1,6 +1,6 @@
 <?php
 
-    include('php/connection.php');
+    include('static/connection.php');
 
     // selects ALL from the users table in the blokzero database
     $query = "SELECT * FROM users";
@@ -30,11 +30,11 @@
         //outputs the data
 
         // echos out data in a html table
-        echo "<table class='highlight responsive-table'><thead><tr><th>User ID</th><th>Username</th><th>Password</th><th>Authority Level</th></tr></thead>"; //using materialize CSS classes and functions
+        echo "<table class='highlight responsive-table'><thead><tr><th>User ID</th><th>Username</th><th>Password</th><th>Real Name</th><th>Authority Level</th></tr></thead>"; //using materialize CSS classes and functions
 
         while($row = mysqli_fetch_assoc($result) ) { //fetches the result
 
-            echo "<tr><td>". $row["user_id"] ."</td><td>". $row["user_name"] ."</td><td>". $row["user_password"] ."</td><td>". $row["user_authority_level"] ."</td><td>". $row["logged_in"] ."</td></tr>";
+            echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["user_name"] . "</td><td>" . $row["user_password"] . "</td><td>" . $row["real_name"] . "</td><td>" . $row["user_authority_level"] . "</td><td>" . $row["logged_in"] . "</td></tr>";
         }
 
         echo "</table>";

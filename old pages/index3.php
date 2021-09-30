@@ -1,54 +1,75 @@
 <?php
 session_start();
 
-include('static/functions.php');
+include('static/Functions.php');
+$loginErrors = array('loginUsernameError' => '', 'loginPasswordError' => '', 'loginGeneralError' => '');
+
+    if( isset($_POST['loginUserBtn'] ) ) {
+
+        $formUsername = validateFormData($_POST['existingUsername']);
+        $formPassword = validateFormData($_POST['existingUserPassword']);
+
+        //database connection
+        include('static/connection.php');
+
+        //creates the query to access the user database - takes the row names after select
+        $loginQuery = "SELECT real_name, user_password, user_authority_level FROM users WHERE user_name ='$formUsername'";
 
 
-$loginErrors = array('loginUsernameError' => '', 'loginPasswordError' => '', 'loginGeneralError' => '', 'loginNoUserError' => '');
-if(isset($_POST["loginUserBtn"] ) ) {
+        //Stores the result of the query
+        $loginResult = mysqli_query($connection, $loginQuery);
 
-    $loginFormUsername = validateFormData($_POST['existingUsername']);
-    $loginFormPassword = validateFormData($_POST['existingUserPassword']);
-   
-    include('static/connection.php');
+        //verifies the result if returned
+        if( mysqli_num_rows($loginResult) > 0 ) {
 
+            // stores basic user data in variables
+            //
+            while( $loginRow = mysqli_fetch_assoc($loginResult) ){
 
-    $loginQuery = "SELECT real_name, user_password, user_authority_level, user_name FROM users WHERE user_name ='$loginFormUsername'";
+                $loginRealname = $loginRow['real_name'];
+                $loginAuthLevel = $loginRow['user_authority_level'];
+                $loginHashedPass = $loginRow['user_password'];
 
+            }
+            
+            // verifies hashed passwords with submitted password
+            // if((password_verify($formPassword, $loginHashedPass)) && $loginAuthLevel == 1){
+            
+                if(password_verify($formPassword, $loginHashedPass)){
 
-    $loginResult = mysqli_query($connection, $loginQuery);
+                //correct login details
+                //store data in SESSION variables
+                //sends user to Authority Level 1 page
+                $_SESSION['loggedInUser'] = $loginRealname;
+                // header("Location: pages/indexLevel1.php");
 
-    if( mysqli_num_rows($loginResult) > 0 ) {
+                echo($loginRealname . "<br>" . $loginAuthLevel);
 
-        while( $row = mysqli_fetch_assoc($loginResult) ){
+            // } elseif ((password_verify($formPassword, $loginHashedPass)) && $loginAuthLevel == 2){
 
-            $returnRealName = $row['real_name'];
-            $returnAuthLevel = $row['user_authority_level'];
-            $returnUsername = $row['user_name'];
-            $returnHashPass = $row['user_password'];
-        }
+            //     //correct login details
+            //     //store data in SESSION variables
+            //     //sends user to Authority level 2 page
+            //     $_SESSION['loggedInUser'] = $loginRealname;
+            //     header("Location: pages/indexLevel2.php");
 
-        if( password_verify( $loginFormPassword, $returnHashPass) && $returnAuthLevel == 1 ) {
+            } else {
+                // hashed password didn't match or verify
+                // error message
+                $loginErrors['loginUsernameError'] = "Wrong username entered, please try again";
+                $loginErrors['loginPasswordError'] = "Wrong password entered, please try again";
+            }
 
-            $_SESSION['loggedinUser'] = $returnRealName;
-            header( "Location: pages/indexLevel1.php");
-
-        } else if ( password_verify( $loginFormPassword, $returnHashPass) && $returnAuthLevel == 2 ){
-         
-            // need more if / else if statments to redirect to correct venue
-            $_SESSION['loggedinUser'] = $returnRealName;
-            header( "Location: pages/indexLevel2.php");
         } else {
-            echo "You need to email Matthew to get an authority level";
-        }
-    } else {
+            // if no results 
+            $loginErrors['loginGeneralError'] = "No such user in the database. Please try again";
+        }        
 
-        $loginErrors['loginNoUserError'] = 'Username not found <br>';
+        //closes mysqli connection
+        mysqli_close($connection);
     }
-    mysqli_close($connection);
-}
 
-include('static/header.php'); 
+require('static/header.php'); 
 ?>
 
     <div class="container">
@@ -85,12 +106,12 @@ include('static/header.php');
                                         <div class="col s12">
                                             <div class="input-field">
                                                 <input placeholder="Enter your username" type="text" name="existingUsername" />
-                                                <div class="red-text"><?php echo $loginErrors['loginUsernameError']; echo $loginErrors['loginGeneralError']; echo $loginErrors['loginNoUserError'];?></div>
+                                                <div class="red-text"><?php echo $loginErrors['loginUsernameError']; echo $loginErrors['loginGeneralError']; ?></div>
                                                 <label for="username">Username</label>
                                             </div>
                                             <div class="input-field">
 										        <input placeholder="Enter your password" type="password" name="existingUserPassword" />
-                                                <!-- <div class="red-text"><?php echo $loginErrors['loginPasswordError']; ?></div> -->
+                                                <div class="red-text"><?php echo $loginErrors['loginPasswordError']; ?></div>
 										        <label for="userPassword">Password</label>
 									        </div>
                                             <div class="row">
@@ -101,14 +122,14 @@ include('static/header.php');
                                             <div class="row left-align">
                                                 <div class="col s2"></div>
                                                 <div class="col s8">
-                                                    <button type="submit" class="btn-flat waves-effect waves-custom" name="loginUserBtn"><i class="material-icons left">account_box</i>Login</button>
+                                                    <button class="btn-flat waves-effect waves-custom" type="submit" name="loginUserBtn"><i class="material-icons left">account_box</i>Login</button>
                                                 </div>
                                                 <div class="col s2"></div>
                                             </div>
                                             <div class="row left-align">
                                                 <div class="col s2"></div>
                                                 <div class="col s8">
-                                                    <a class="btn-flat waves-effect waves-custom" href="../createUser.php" name="btn_create"><i class="material-icons left">create</i>Create User</a>
+                                                    <a class="btn-flat waves-effect waves-custom" href="createUser.php" name="btn_create"><i class="material-icons left">create</i>Create User</a>
                                                 </div>
                                                 <div class="col s2"></div>
                                             </div>

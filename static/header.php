@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,19 +17,11 @@
 <body class="blokzero-font grey lighten-5 blue-grey-text text-darken-3">
 
     <nav class="blue-grey lighten-1 z-depth-0">
-			<div class="nav-wrapper blue-grey lighten-1 z-depth-0">
-				<a href="#" class="header-logoEow">BLOKZERO</a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a class="waves-effect waves-custom btn-flat grey-text text-lighten-4" id="logoutUser">Log Out</a></li>
-				</ul>
-				<a href="#" data-target="header-content" class="sidenav-trigger"><i class="material-icons sidenav-darkbg">menu</i></a>
-			</div>
+        <div class="nav-wrapper blue-grey lighten-1 z-depth-0">
+                <a href="#" class="header-logoEow">BLOKZERO</a>
+        </div>
 	</nav>
 
-	<ul class="sidenav" id="header-content">
-		<li><a class="waves-effect waves-custom btn-flat blue-grey light-2 center-align grey-text text-lighten-5" id="logoutUser" >Log Out</a></li>
-  	</ul>
-    
     <!-- spacer row -->
     <div class="row">
         <div class="col s12"></div>
