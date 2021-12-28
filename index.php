@@ -1,53 +1,6 @@
 <?php
-session_start();
 
-include('static/functions.php');
-
-
-$loginErrors = array('loginUsernameError' => '', 'loginPasswordError' => '', 'loginGeneralError' => '', 'loginNoUserError' => '');
-if(isset($_POST["loginUserBtn"] ) ) {
-
-    $loginFormUsername = validateFormData($_POST['existingUsername']);
-    $loginFormPassword = validateFormData($_POST['existingUserPassword']);
-   
-    include('static/connection.php');
-
-
-    $loginQuery = "SELECT real_name, user_password, user_authority_level, user_name FROM users WHERE user_name ='$loginFormUsername'";
-
-
-    $loginResult = mysqli_query($connection, $loginQuery);
-
-    if( mysqli_num_rows($loginResult) > 0 ) {
-
-        while( $row = mysqli_fetch_assoc($loginResult) ){
-
-            $returnRealName = $row['real_name'];
-            $returnAuthLevel = $row['user_authority_level'];
-            $returnUsername = $row['user_name'];
-            $returnHashPass = $row['user_password'];
-        }
-
-        if( password_verify( $loginFormPassword, $returnHashPass) && $returnAuthLevel == 1 ) {
-
-            $_SESSION['loggedinUser'] = $returnRealName;
-            header( "Location: pages/indexLevel1.php");
-
-        } else if ( password_verify( $loginFormPassword, $returnHashPass) && $returnAuthLevel == 2 ){
-         
-            // need more if / else if statments to redirect to correct venue
-            $_SESSION['loggedinUser'] = $returnRealName;
-            header( "Location: pages/indexLevel2.php");
-        } else {
-            echo "You need to email Matthew to get an authority level";
-        }
-    } else {
-
-        $loginErrors['loginNoUserError'] = 'Username not found <br>';
-    }
-    mysqli_close($connection);
-}
-
+include('static/login.php');
 include('static/header.php'); 
 ?>
 
@@ -61,16 +14,25 @@ include('static/header.php');
                     <div class="slider">
                         <ul class="slides blue-grey lighten-2">
                         <li>
-                            <img src="images/login/BarThirteen-Logo.png">
+                            <img src="images/login/Bar13Logo.png">
                         </li>
                         <li>
-                            <img src="images/login/Brass-Monkey-white.png">
+                            <img src="images/login/BrassMonkeyLogo.png">
                         </li>
                         <li>
-                            <img src="images/login/Brass-Pig-Logo.png">   
+                            <img src="images/login/BrassPigLogo.png">   
                         </li>
                         <li>
-                            <img src="images/login/Story_Logo.png">
+                            <img src="images/login/GravityLogo.png">
+                        </li>
+                        <li>
+                            <img src="images/login/mbargoLogo.png">
+                        </li>
+                        <li>
+                            <img src="images/login/StoryLogo.png">
+                        </li>
+                        <li>
+                            <img src="images/login/TMLogo.png">
                         </li>
                         </ul>
                     </div>
@@ -93,11 +55,11 @@ include('static/header.php');
                                                 <!-- <div class="red-text"><?php echo $loginErrors['loginPasswordError']; ?></div> -->
 										        <label for="userPassword">Password</label>
 									        </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <label style="float: right;">
 									                <a class="pink-text" href="#!"><b>Forgot Password?</b></a>
 								                </label>
-                                            </div>
+                                            </div> -->
                                             <div class="row left-align">
                                                 <div class="col s2"></div>
                                                 <div class="col s8">
@@ -108,7 +70,7 @@ include('static/header.php');
                                             <div class="row left-align">
                                                 <div class="col s2"></div>
                                                 <div class="col s8">
-                                                    <a class="btn-flat waves-effect waves-custom" href="../createUser.php" name="btn_create"><i class="material-icons left">create</i>Create User</a>
+                                                    <a class="btn-flat waves-effect waves-custom" href="createUser.php" name="btn_create"><i class="material-icons left">create</i>Create User</a>
                                                 </div>
                                                 <div class="col s2"></div>
                                             </div>

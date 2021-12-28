@@ -1,0 +1,22 @@
+// Function to generate random str as key for the localStorage
+function randomStr(m) {
+        var m = m || 9; s = '', r = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (var i=0; i < m; i++) { s += r.charAt(Math.floor(Math.random()*r.length)); }
+        return s;
+}; $(document).ready(function()
+
+        { var hasStorage = true; localStorage.clear(); 
+            
+            if(!localStorage.getItem("names")) { 
+                
+                var hasStorage = (function() 
+                    { try { 
+                        var myRSSObject = new Object(); localStorage.setItem("names", JSON.stringify(myRSSObject)); 
+                        
+                        return true; 
+                    
+                    } catch(e) { return false; } }()); } 
+                    
+                    $("#submit").click(function() { 
+                        
+                        if(hasStorage) { var names = JSON.parse(localStorage.getItem("names")); names[randomStr(7)] = document.getElementById("name").value; localStorage.setItem("names", JSON.stringify( names )); alert("Stored Succesfully"); document.getElementById("name").value = ""; alert("Now Passing stored data to Server through AJAX jQuery"); $.ajax({ type: "POST", url: "backend.php", data: {data: localStorage.getItem("names")}, success: function(data) { $('#output').html(data); } }); } else { alert("Storage Failed. Try refreshing"); } }); });

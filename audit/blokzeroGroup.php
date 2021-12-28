@@ -11,7 +11,7 @@
     include('../static/header2.php');
 ?>
 
-<h1>This page has Authority Level 1</h1>
+<h1>This page is for Blokzero Group</h1>
     <?php
     // checks number of rows in the if statement, if it is greater than (>) then it returns data
     if(mysqli_num_rows($result) > 0 ) {

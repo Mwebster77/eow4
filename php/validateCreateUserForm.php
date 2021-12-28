@@ -1,7 +1,5 @@
 <?php
 
-    define( "TITLE", "GET &amp; POST");
-
     //validates data for create user form
     if( isset( $POST["createUserBtn"])){
 

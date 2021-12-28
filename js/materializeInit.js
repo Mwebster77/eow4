@@ -10,8 +10,3 @@ document.addEventListener('DOMContentLoaded', function() {
     var sideNavElems = document.querySelectorAll('.sidenav');
     var sideNavInstances = M.Sidenav.init(sideNavElems);
   });
-
-
-
-
-// 
