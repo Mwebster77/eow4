@@ -2,7 +2,7 @@
 
     $server = "localhost";
     $username = "Matthew";
-    $password = "crc152";
+    $password = "Liquid328";
     $db = "blokzero";
 
     // $host_name = 'db5001325749.hosting-data.io';

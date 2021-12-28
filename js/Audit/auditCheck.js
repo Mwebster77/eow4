@@ -42,12 +42,12 @@ const venueCorrectAnswers = [
 
 
 const form = document.querySelector('.venueAudit-form');
-const formConfirm = document.querySelector('.submitResults-form')
+//const formConfirm = document.querySelector('.submitResults-form');
 const venueResult = document.querySelector('.venueResult');
 const auditResult = document.querySelector('.auditResult');
-// const confirmResult = document.querySelector('.confirmResult');
+const confirmResult = document.querySelector('.confirmResult');
 const checkResult = document.querySelector('.checkResult');
-
+const confirmButton = document.querySelector('.confirmButton');
 
 
 form.addEventListener('submit', e => {
@@ -98,16 +98,27 @@ form.addEventListener('submit', e => {
 	console.log('the Venue Percentage was ' + venuePercentage + '%');
 
 
-		// output results on page
+	// output results on page
 	// local storage has to go at the end as this is the final value of each item.
 	
 	venueResult.querySelector('span').textContent = `${venuePercentage}%`;
 	venueResult.classList.remove('hide');
 	auditResult.querySelector('span').textContent = `${auditPercentage}%`;
 	auditResult.classList.remove('hide');
+	confirmButton.classList.remove('hide');
+
+	//formConfirm.classList.remove('hide');
+
+	//takes audit values and turns them into JSON string
+	const auditObj = {'Audit Score' : auditPercentage, 'Venue Score' : venuePercentage}
+	const auditJSON = JSON.stringify(auditObj);
+
+	//sends JSON string to php file
+	auditXmlHttp = new XMLHttpRequest();
+	auditXmlHttp.open("POST", "../php/auditConfirm.php");
+	auditXmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	auditXmlHttp.send(auditJSON);
 	
-
-	formConfirm.classList.remove('hide');
-
 });
+
 

@@ -2,7 +2,7 @@
     session_start();
     include('../static/connection.php');
     include('../static/header2.php');
-    include('../php/auditConfirm.php');
+    // include('../php/auditConfirm.php');
 ?>
 
 <h1>This page is for Bar 13</h1>
@@ -1598,19 +1598,19 @@
 		</div>
         <div class="row">
             <!-- blank coloumn -->
-            <div class="col m1"></div>
+            <div class="col s3 m1"></div>
 
             <div class="checkResult">
                 <div class="col s6 m10 center-align">
-                    <button class="btn brand waves-effect waves-light" onclick="getScores()" type="post" name="action" id="submitCheck">Check Result<i class="material-icons right">check</i></button>
+                    <!-- <button class="btn brand waves-effect waves-light" onclick="getScores()" type="post" name="action" id="submitCheck">Check Result<i class="material-icons right">check</i></button> -->
+                    <button class="btn brand waves-effect waves-light" type="post" name="action" id="submitCheck">Check Result<i class="material-icons right">check</i></button>
+                
                 </div>
             </div>
-
             <!-- blank coloumn -->
-            <div class="col s3 m1 "></div>
-        </div>
-        
-        
+            <div class="col s3 m1"></div>
+        </div>   
+
         <!-- results section -->
         <div class="container center-align brown lighten-5 blue-grey-text text-lighten-1 p-b-10">
             <div class="row">
@@ -1634,23 +1634,27 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+
+            </div>
         </div>
     </form>
-    <form class="submitResults-form hide brown lighten-5 p-b-10" id="submitResults-form" method="post" action=<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] );?> onsubmit="return">
+    <!-- <form class="submitResults-form hide brown lighten-5 p-b-10" id="submitResults-form" method="post" action=<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] );?> onsubmit="return"> -->
+    <form class="confirmButton center-align hide brown lighten-5 p-b-10" id="submitResults-form" method="post" action=<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] );?> onsubmit="return">
         <div class="row">             
             <div class="results">
-                <div class="col s1"></div>
-                <div class="col s3">
+                <div class="col s3 m1"></div>
+                <!-- <div class="col s3">
                     <input type="hidden" id="venueToSend" name="venueToSend">
                 </div>
                 <div class="col s3">
                     <input type="hidden" id="auditToSend" name="auditToSend">
-                </div>
-                <div class="co1 s1"></div>
-                </div>
+                </div> -->
+                </div class="col s6 m10 center-align">
                     <button class="btn brand waves-custom btn-flat red lighten-2" type="submit" name="confirmResultBtn">Confirm result<i class="material-icons right">send</i></button>
                 </div>
-                </div>
+                <div class="col s3 m1"></div>
+            </div>
     </form>
 </div>
 

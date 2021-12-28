@@ -83,6 +83,7 @@ include('static/header.php');
                 <div class="col s2 m2 l1"></div> <!-- spacer column -->
             </div>
         </div>
-
+<!-- Compiled and minified JavaScript -->
+<script src="js/materializeInit.js"></script>
 <?php require('static/footer.php'); ?>
 </html>
