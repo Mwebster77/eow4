@@ -90,7 +90,7 @@ form.addEventListener('submit', e => {
 	localStorage.setItem("venuePercentage", venuePercentage);
 	localStorage.setItem("auditPercentage", auditPercentage);
 	 console.log('local storage has stored the Audit Percentage as ' + localStorage.getItem("auditPercentage") + '% and, the Venue Percentage as ' + localStorage.getItem("venuePercentage") + '%');
-	// console.log('the Audit score was ' + auditScore);
+	 console.log('the Audit score was ' + auditScore);
 	// console.log('the Venue score was ' + venueScore);
 	// console.log('the Audit Percentage was ' + auditPercentage + '%');
 	// console.log('the Venue Percentage was ' + venuePercentage + '%');
@@ -107,33 +107,8 @@ form.addEventListener('submit', e => {
 	//formConfirm.classList.remove('hide');
 
 	document.getElementById('ap').setAttribute('value', localStorage.getItem('auditPercentage'));
-	document.getElementById('vp').setAttribute('value', localStorage.getItem('venuePercentage'));
+	document.getElementById('vp').setAttribute('value', localStorage.getItem('auditPercentage'));
 
-	// // //AJAX
-	// function submitData(auditData){
-	// 	var auditArray = [ localStorage.getItem("venuePercentage"), localStorage.getItem("auditPercentage")];
-	// 	var auditXmlHttp = new XMLHttpRequest();
-	// 	auditXmlHttp.onload = function(){
-	// 		console.log(auditXmlHttp.responseText);
-	// 	}
-	// auditXmlHttp.open(auditData.venuePercentage,auditData.auditPercentage,true);
-	// auditXmlHttp.send(new FormData(auditData));
-	// return false;
-	// }
-
-	
-	// //takes audit values and turns them into JSON string
-	// const auditObj = {'Audit Score' : auditPercentage, 'Venue Score' : venuePercentage}
-	// const auditJSON = JSON.stringify(auditObj);
-
-	// //sends JSON string to php file
-	// auditXmlHttp = new XMLHttpRequest();
-	// var auditUrl = "../php/auditConfirm.php";
-	// auditXmlHttp.open("POST", auditUrl, true);
-	// auditXmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	// auditXmlHttp.send(auditJSON);
-	// console.log(auditJSON);
-	// // // console.log(auditJSON.method);
 });
 
 

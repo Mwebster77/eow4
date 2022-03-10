@@ -2,7 +2,7 @@
     session_start();
     include('../static/connection.php');
     include('../static/header2.php');
-    // include('../php/auditConfirm.php');
+    include('../php/auditConfirm.php');
 ?>
 
 <h1>This page is for Bar 13</h1>
@@ -1640,17 +1640,17 @@
         </div>
     </form>
     <!-- <form class="submitResults-form hide brown lighten-5 p-b-10" id="submitResults-form" method="post" action=<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] );?> onsubmit="return"> -->
-    <form class="confirmButton center-align hide brown lighten-5 p-b-10" id="submitResults-form" method="post" action=<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] );?> onsubmit="return">
+    <form class="confirmButton center-align hide brown lighten-5 p-b-10" id="submitResults-form" method="post" action="../php/auditConfirm.php" onsubmit="return submitData(this)">
+    <!-- <form class="confirmButton center-align hide brown lighten-5 p-b-10" id="submitResults-form" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>" method="post"> -->
         <div class="row">             
             <div class="results">
                 <div class="col s3 m1"></div>
-                <!-- <div class="col s3">
-                    <input type="hidden" id="venueToSend" name="venueToSend">
-                </div>
-                <div class="col s3">
-                    <input type="hidden" id="auditToSend" name="auditToSend">
-                </div> -->
                 </div class="col s6 m10 center-align">
+                    <!-- ap = audit percentage -->
+                    <input disabled type="text" value="" id="ap" name="ap"/>
+                    <!-- vp = venue percentage -->
+                    <input disabled type="text" value="" id="vp" name="vp"/>
+
                     <button class="btn brand waves-custom btn-flat red lighten-2" type="submit" name="confirmResultBtn">Confirm result<i class="material-icons right">send</i></button>
                 </div>
                 <div class="col s3 m1"></div>
@@ -1666,7 +1666,7 @@
 
 <!-- my written scripts -->
 <script src="../js/audit/auditCheck.js"></script>
-<script src="../js/audit/auditGetValue.js"></script>
+<!-- <script src="../js/audit/auditConfirm.js"></script> -->
 
 <?php require('../static/footer.php'); ?>
 </html>
