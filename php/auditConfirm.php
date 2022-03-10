@@ -2,8 +2,9 @@
 
 include('../static/functions.php');
 
-if( isset( $_POST["confirmResultBtn"])){
+if( isset( $_GET["confirmResultBtn"])){
 
+    // opens database connection
     include('../static/connection.php');
 
     $auditQuery = "INSERT INTO bar13_auditscores (audit_ID, audit_date, bar13_VenueScore, bar13_AuditScore) VALUES (NULL, CURRENT_TIMESTAMP, '$vp', '$ap')"; {
@@ -16,7 +17,7 @@ if( isset( $_POST["confirmResultBtn"])){
         }
     }
 
-    mysqli_close($connection);
+    // mysqli_close($connection);
 };
 
 ?>

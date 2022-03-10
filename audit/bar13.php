@@ -1646,10 +1646,10 @@
             <div class="results">
                 <div class="col s3 m1"></div>
                 </div class="col s6 m10 center-align">
-                    <!-- ap = audit percentage -->
+                    <!-- ap = audit percentage
                     <input disabled type="text" value="" id="ap" name="ap"/>
-                    <!-- vp = venue percentage -->
-                    <input disabled type="text" value="" id="vp" name="vp"/>
+                    <-- vp = venue percentage --
+                    <input disabled type="text" value="" id="vp" name="vp"/> -->
 
                     <button class="btn brand waves-custom btn-flat red lighten-2" type="submit" name="confirmResultBtn">Confirm result<i class="material-icons right">send</i></button>
                 </div>
