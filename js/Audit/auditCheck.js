@@ -122,18 +122,18 @@ form.addEventListener('submit', e => {
 	// }
 
 	
-	// //takes audit values and turns them into JSON string
-	// const auditObj = {'Audit Score' : auditPercentage, 'Venue Score' : venuePercentage}
-	// const auditJSON = JSON.stringify(auditObj);
+	//takes audit values and turns them into JSON string
+	const auditObj = {'Audit Score' : auditPercentage, 'Venue Score' : venuePercentage}
+	const auditJSON = JSON.stringify(auditObj);
 
-	// //sends JSON string to php file
-	// auditXmlHttp = new XMLHttpRequest();
-	// var auditUrl = "../php/auditConfirm.php";
-	// auditXmlHttp.open("POST", auditUrl, true);
-	// auditXmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	// auditXmlHttp.send(auditJSON);
-	// console.log(auditJSON);
-	// // // console.log(auditJSON.method);
+	//sends JSON string to php file
+	auditXmlHttp = new XMLHttpRequest();
+	var auditUrl = "../php/auditConfirm.php";
+	auditXmlHttp.open("POST", auditUrl, true);
+	auditXmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	auditXmlHttp.send(auditJSON);
+	console.log(auditJSON);
+	// // console.log(auditJSON.method);
 });
 
 
